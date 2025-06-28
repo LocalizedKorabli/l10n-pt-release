@@ -1,0 +1,14 @@
+歡迎使用澪刻繁體中文化自解壓安裝包！
+
+安裝包内容：
+• 《Mir Korabley》PT客戶端繁體中文語言包；
+• 英語開屏Logo；
+• 基於Unbound的畫面優化模組；
+• SrcHelios字體。
+
+若對本程式有任何意見或建議，请加入QQ群組（875113509）反饋，或於https://github.com/OpenKorabli/OpenL10nInstaller/issues創建議題。
+若對語言包有任何意見或建議，请加入QQ群組（875113509）反饋，或於https://github.com/LocalizedKorabli/Korabli-L10n-CHT/issues創建議題。
+
+點擊“下一步”後，安裝將自動運行。
+
+祝您游戲愉快~

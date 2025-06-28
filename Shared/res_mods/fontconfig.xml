@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<fontconfig>
+    <ASIA>
+        <alias>
+            <embedded> $DefaultFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $DefaultFontBold </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosBold.ttf </path>
+            <bold> true </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMELanguageBar </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMECandidateListFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $MKSymbol </embedded>
+            <fullName> MKSymbol </fullName>
+            <path> SrcHelios/Compat/MKSymbol.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+    </ASIA>
+    <CN>
+        <alias>
+            <embedded> $DefaultFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $DefaultFontBold </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosBold.ttf </path>
+            <bold> true </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMELanguageBar </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMECandidateListFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $MKSymbol </embedded>
+            <fullName> MKSymbol </fullName>
+            <path> SrcHelios/Compat/MKSymbol.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+    </CN>
+    <EU>
+        <alias>
+            <embedded> $DefaultFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $DefaultFontBold </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosBold.ttf </path>
+            <bold> true </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMELanguageBar </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMECandidateListFont </embedded>
+            <fullName>  SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $MKSymbol </embedded>
+            <fullName> MKSymbol </fullName>
+            <path> SrcHelios/Compat/MKSymbol.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+    </EU>
+    <KO>
+        <alias>
+            <embedded> $DefaultFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $DefaultFontBold </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosBold.ttf </path>
+            <bold> true </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMELanguageBar </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMECandidateListFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $MKSymbol </embedded>
+            <fullName> MKSymbol </fullName>
+            <path> SrcHelios/Compat/MKSymbol.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+    </KO>
+    <RU>
+        <alias>
+            <embedded> $DefaultFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $DefaultFontBold </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosBold.ttf </path>
+            <bold> true </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMELanguageBar </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMECandidateListFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $MKSymbol </embedded>
+            <fullName> MKSymbol </fullName>
+            <path> SrcHelios/Compat/MKSymbol.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+    </RU>
+    <TH>
+        <alias>
+            <embedded> $DefaultFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $DefaultFontBold </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosBold.ttf </path>
+            <bold> true </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMELanguageBar </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $IMECandidateListFont </embedded>
+            <fullName> SrcHelios </fullName>
+            <path> SrcHelios/SrcHeliosMedium.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+        <alias>
+            <embedded> $MKSymbol </embedded>
+            <fullName> MKSymbol </fullName>
+            <path> SrcHelios/Compat/MKSymbol.ttf </path>
+            <bold> false </bold>
+            <italic> false </italic>
+        </alias>
+    </TH>
+</fontconfig>
