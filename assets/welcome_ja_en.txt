@@ -1,0 +1,14 @@
+Thank you for using Japanese Localization mod by LocalizedKorabli.
+This is an offline installer for the localization mod mentioned above.
+
+Contents included:
+• A japanese localization pack for Mir Korabley Public Test Client;
+• An English game-loading logo;
+• UI optimization mods based on Unbound framework.
+
+Any suggestions about the program, please contact OpenKorabli by creating an issue on https://github.com/OpenKorabli/OpenL10nInstaller/issues.
+Any suggestions about the program, please contact us by creating an issue on https://github.com/LocalizedKorabli/Korabli-I18n-JA-PT/issues.
+
+The setup will start once you click "Next".
+
+Enjoy the game~

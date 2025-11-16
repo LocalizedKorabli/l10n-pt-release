@@ -7,7 +7,7 @@
 
 [Setup]
 AppName={#MyAppName}
-AppVersion=25.7.8815438.0
+AppVersion=25.12.8830498.0
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppPublisherURL}
 AppSupportURL={#MyAppSupportURL}
@@ -22,16 +22,24 @@ SolidCompression=yes
 WizardStyle=modern
 Uninstallable=no
 SetupIconFile=assets\logo.ico
+VersionInfoDescription={#MyAppName}
 
 [Files]
 Source: "Localizations\zh\*"; DestDir: "{tmp}\mods\res_mods"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "Shared\*"; DestDir: "{tmp}\mods"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Languages]
-Name: "chinesesimplified"; MessagesFile: "InstallerL10n\ChineseSimplified.isl"; InfoBeforeFile: "assets\welcome_chs.txt"; LicenseFile: "assets\license_chs.txt";
+Name: "chs"; MessagesFile: "InstallerL10n\ChineseSimplified.isl"; InfoBeforeFile: "assets\welcome_chs.txt"; LicenseFile: "assets\license_chs.txt";
 //Name: "chinesetraditional"; MessagesFile: "InstallerL10n\ChineseTraditional.isl"; InfoBeforeFile: "assets\welcome_cht.txt"; LicenseFile: "assets\license_cht.txt";
 //Name: "english"; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "assets\welcome_en.txt"; LicenseFile: "assets\license.txt";
 //Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; InfoBeforeFile: "assets\welcome_ru.txt"; LicenseFile: "assets\license_ru.txt";
+
+[CustomMessages]
+chs.ErrorColon=错误：
+chs.InvalidPreferencesError=无法读取配置文件“%1”。%n请确保您已正确安装GameCenter。%n
+chs.InstalledToDirsBelow=已安装到以下目录：%n%1
+chs.BuildDirsNotFound=虽然已检测到您的游戏安装路径，但未能找到有效的游戏版本文件夹。%n请检查游戏是否已完整安装。
+chs.ContactUsForHelp=如果您无法自行解决安装问题，请加入澪刻汉化组闲聊群（875113509）以寻求帮助。
 
 [Code]
 function GetInstallRootFromRegistry(): String;
@@ -65,8 +73,7 @@ begin
     begin
       StringChange(s, '<id>', '');
       StringChange(s, '</id>', '');
-      // 若要安装到PT端，将下一行的值改为——'WOWS.RPT.PRODUCTION'
-      if s = 'WOWS.RPT.PRODUCTION' then
+      if s = 'MK.RPT.PRODUCTION' then
       begin
         Result := True;
         Exit;
@@ -79,11 +86,21 @@ function ExtractWorkingDirs(xmlPath: String; var dirs: TArrayOfString): Boolean;
 var
   Lines: TArrayOfString;
   i, count: Integer;
-  dir: String;
+  dir, msg: String;
 begin
   Result := False;
   count := 0;
-  if not LoadStringsFromFile(xmlPath, Lines) then Exit;
+  msg := CustomMessage('ErrorColon');
+  if not LoadStringsFromFile(xmlPath, Lines) then 
+  begin
+    msg := msg + FmtMessage(CustomMessage('InvalidPreferencesError'), [xmlPath]);
+    MsgBox(
+      msg,
+      mbCriticalError,
+      MB_OK
+    )
+    Exit;
+  end;
   for i := 0 to GetArrayLength(Lines) - 1 do
   begin
     dir := Trim(Lines[i]);
@@ -206,9 +223,11 @@ var
   gameDirs: TArrayOfString;
   i: Integer;
   d1, d2, target1, target2: String;
+  installedDirs, msg: String;
 begin
   if CurStep = ssPostInstall then
   begin
+    installedDirs := '';
     basePath := GetInstallRootFromRegistry();
     xmlPath := basePath + 'preferences.xml';
     if ExtractWorkingDirs(xmlPath, gameDirs) then
@@ -223,6 +242,7 @@ begin
           Log('Installing to: ' + target1);
           ForceDirectories(target1);
           CopyDirectoryTree(ExpandConstant('{tmp}\mods'), target1);
+          installedDirs := installedDirs + target1 + #13#10;
         end;
         if d2 <> '' then
         begin
@@ -230,10 +250,37 @@ begin
           Log('Installing to: ' + target2);
           ForceDirectories(target2);
           CopyDirectoryTree(ExpandConstant('{tmp}\mods'), target2);
+          installedDirs := installedDirs + target2 + #13#10;
         end;
+      end;
+      if installedDirs <> '' then
+      begin
+        installedDirs := Trim(installedDirs);
+        msg := FmtMessage(CustomMessage('InstalledToDirsBelow'), [installedDirs]);
+        MsgBox(
+          msg, 
+          mbInformation, 
+          MB_OK
+        );
+      end
+      else
+      begin
+        msg := CustomMessage('BuildDirsNotFound');
+        MsgBox(
+          msg, 
+          mbError, 
+          MB_OK
+        );
       end;
     end
     else
-      MsgBox('Unable to parse working_dir in the preferences.xml, or game_info.xml invalid.', mbError, MB_OK);
+    begin
+      msg := CustomMessage('ContactUsForHelp');
+      MsgBox(
+        msg,
+        mbCriticalError,
+        MB_OK
+      );
+    end;
   end;
 end;

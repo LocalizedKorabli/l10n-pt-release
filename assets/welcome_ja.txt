@@ -1,0 +1,12 @@
+澪刻による日本語化 Mod をご利用いただき、ありがとうございます。 これは、上記の日本語化 Mod 用のオフラインインストーラーです。
+
+収録内容： 
+• 『ミール・コラブリ』公開テストクライアント用の日本語化パック
+• 英語のゲーム読み込みロゴ
+• Unbound フレームワークベースの UI 最適化 Mod
+
+プログラムに関するご提案は、https://github.com/OpenKorabli/OpenL10nInstaller/issues にて Issue を作成し、OpenKorabli までご連絡ください。 プログラムに関するご提案は、https://github.com/LocalizedKorabli/Korabli-I18n-JA-PT/issues にて Issue を作成し、私たちにご連絡ください。
+
+「次へ」をクリックすると、セットアップが開始されます。
+
+ゲームをお楽しみください～

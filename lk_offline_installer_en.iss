@@ -1,13 +1,13 @@
-#define MyAppName "LK Localization Offline Pack"
 #define MyAppInstallerName "LKEnglishL10nPack"
+#define MyAppNameDefault "LK English Localization Offline Pack"
 #define MyAppVersion "1.0.0"
 #define MyAppPublisher "LocalizedKorabli"
 #define MyAppPublisherURL "https://github.com/LocalizedKorabli"
 #define MyAppSupportURL "https://github.com/OpenKorabli"
 
 [Setup]
-AppName={#MyAppName}
-AppVersion=25.6.8812777.0
+AppName={cm:MyAppName}
+AppVersion=25.12.8830498.0
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppPublisherURL}
 AppSupportURL={#MyAppSupportURL}
@@ -22,16 +22,42 @@ SolidCompression=yes
 WizardStyle=modern
 Uninstallable=no
 SetupIconFile=assets\logo.ico
+// Since we use a non-constant AppName
+UsePreviousLanguage=no
+VersionInfoDescription={#MyAppNameDefault}
+VersionInfoProductName={#MyAppNameDefault}
 
 [Files]
 Source: "Localizations\en\*"; DestDir: "{tmp}\mods\res_mods"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "Shared\bin64"; DestDir: "{tmp}\mods\bin64"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "Shared\*"; DestDir: "{tmp}\mods"; Flags: ignoreversion recursesubdirs createallsubdirs
+// English localization does not really need SrcHelios
+// Source: "Shared\*"; DestDir: "{tmp}\mods\"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Languages]
-Name: "english"; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "assets\welcome_en.txt"; LicenseFile: "assets\license_en.txt";
-Name: "chinesesimplified"; MessagesFile: "InstallerL10n\ChineseSimplified.isl"; InfoBeforeFile: "assets\welcome_en_chs.txt"; LicenseFile: "assets\license_en.txt";
-Name: "chinesetraditional"; MessagesFile: "InstallerL10n\ChineseTraditional.isl"; InfoBeforeFile: "assets\welcome_en_cht.txt"; LicenseFile: "assets\license_en.txt";
+Name: "en"; MessagesFile: "compiler:Default.isl"; InfoBeforeFile: "assets\welcome_en.txt"; LicenseFile: "assets\license_en.txt";
+Name: "chs"; MessagesFile: "InstallerL10n\ChineseSimplified.isl"; InfoBeforeFile: "assets\welcome_en_chs.txt"; LicenseFile: "assets\license_en.txt";
+Name: "cht"; MessagesFile: "InstallerL10n\ChineseTraditional.isl"; InfoBeforeFile: "assets\welcome_en_cht.txt"; LicenseFile: "assets\license_en.txt";
 //Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; InfoBeforeFile: "assets\welcome_ru.txt"; LicenseFile: "assets\license_ru.txt";
+
+[CustomMessages]
+en.MyAppName=LK English Localization Offline Pack
+en.ErrorColon=Error:
+en.InvalidPreferencesError=Failed to parse %1.%nPlease make sure you have GameCenter properly installed.
+en.InstalledToDirsBelow=Localization packs installed to directories below: %n%1
+en.BuildDirsNotFound=Though game path detected, we failed to find any available version folder.%nPlease check game integrity.
+en.ContactUsForHelp=If you cannot solve the problems by yourself, seek help on our Discord server: https://discord.gg/3d9k2mkWy4
+chs.MyAppName=澪刻英文本地化离线包
+chs.ErrorColon=错误：
+chs.InvalidPreferencesError=无法读取配置文件“%1”。%n请确保您已正确安装GameCenter。%n
+chs.InstalledToDirsBelow=已安装到以下目录：%n%1
+chs.BuildDirsNotFound=虽然已检测到您的游戏安装路径，但未能找到有效的游戏版本文件夹。%n请检查游戏是否已完整安装。
+chs.ContactUsForHelp=如果您无法自行解决安装问题，请加入澪刻汉化组闲聊群（875113509）以寻求帮助。
+cht.MyAppName=澪刻英語在地化離綫包
+cht.ErrorColon=錯誤：
+cht.InvalidPreferencesError=無法讀取設定檔「%1」。%n請確保您已正確安裝 GameCenter。%n
+cht.InstalledToDirsBelow=已安裝至以下目錄：%n%1
+cht.BuildDirsNotFound=雖然已偵測到您的遊戲安裝路徑，但未能找到有效的遊戲版本資料夾。%n請檢查遊戲是否已完整安裝。
+cht.ContactUsForHelp=如果您無法自行解決安裝問題，請加入澪刻在地化Discord群組（https://discord.gg/3d9k2mkWy4）以尋求協助。
 
 [Code]
 function GetInstallRootFromRegistry(): String;
@@ -65,8 +91,7 @@ begin
     begin
       StringChange(s, '<id>', '');
       StringChange(s, '</id>', '');
-      // 若要安装到PT端，将下一行的值改为——'WOWS.RPT.PRODUCTION'
-      if s = 'WOWS.RPT.PRODUCTION' then
+      if s = 'MK.RPT.PRODUCTION' then
       begin
         Result := True;
         Exit;
@@ -79,11 +104,21 @@ function ExtractWorkingDirs(xmlPath: String; var dirs: TArrayOfString): Boolean;
 var
   Lines: TArrayOfString;
   i, count: Integer;
-  dir: String;
+  dir, msg: String;
 begin
   Result := False;
   count := 0;
-  if not LoadStringsFromFile(xmlPath, Lines) then Exit;
+  msg := CustomMessage('ErrorColon');
+  if not LoadStringsFromFile(xmlPath, Lines) then 
+  begin
+    msg := msg + FmtMessage(CustomMessage('InvalidPreferencesError'), [xmlPath]);
+    MsgBox(
+      msg,
+      mbCriticalError,
+      MB_OK
+    )
+    Exit;
+  end;
   for i := 0 to GetArrayLength(Lines) - 1 do
   begin
     dir := Trim(Lines[i]);
@@ -206,9 +241,11 @@ var
   gameDirs: TArrayOfString;
   i: Integer;
   d1, d2, target1, target2: String;
+  installedDirs, msg: String;
 begin
   if CurStep = ssPostInstall then
   begin
+    installedDirs := '';
     basePath := GetInstallRootFromRegistry();
     xmlPath := basePath + 'preferences.xml';
     if ExtractWorkingDirs(xmlPath, gameDirs) then
@@ -223,6 +260,7 @@ begin
           Log('Installing to: ' + target1);
           ForceDirectories(target1);
           CopyDirectoryTree(ExpandConstant('{tmp}\mods'), target1);
+          installedDirs := installedDirs + target1 + #13#10;
         end;
         if d2 <> '' then
         begin
@@ -230,10 +268,37 @@ begin
           Log('Installing to: ' + target2);
           ForceDirectories(target2);
           CopyDirectoryTree(ExpandConstant('{tmp}\mods'), target2);
+          installedDirs := installedDirs + target2 + #13#10;
         end;
+      end;
+      if installedDirs <> '' then
+      begin
+        installedDirs := Trim(installedDirs);
+        msg := FmtMessage(CustomMessage('InstalledToDirsBelow'), [installedDirs]);
+        MsgBox(
+          msg, 
+          mbInformation, 
+          MB_OK
+        );
+      end
+      else
+      begin
+        msg := CustomMessage('BuildDirsNotFound');
+        MsgBox(
+          msg, 
+          mbError, 
+          MB_OK
+        );
       end;
     end
     else
-      MsgBox('Unable to parse working_dir in the preferences.xml, or game_info.xml invalid.', mbError, MB_OK);
+      begin
+      msg := CustomMessage('ContactUsForHelp');
+      MsgBox(
+        msg,
+        mbCriticalError,
+        MB_OK
+      );
+    end;
   end;
 end;

@@ -8,26 +8,26 @@ from typing import List
 
 shall_not_delete: List[str] = []
 
-langs = ['en', 'zh', 'cht']
+langs = ['en', 'zh', 'cht', 'ja']
 
 iscc_path = r'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 
-srchelios_path = r'D:\dev\wows\SrcHelios\SrcHelios\res_mods'
+srchelios_path = r'C:\Users\HoloI\Documents\dev\lesta\ships\mods\SrcHelios\SrcHelios\res_mods'
 
 forum_exclude_patterns = ['game_logo.svg', 'game_logo_alt.svg', 'game_logo_static.svg', 'game_logo_static_alt.svg', 'zzz_lk_ee_zjsj.mo', 'zzz_lk_ee_wws.mo']
 
-min_include_patterns = ['version.info', 'global.mo']
-
-lang_base_paths = {
-    'en': r'D:\dev\wows\Korabli-LESTA-I18N-PublicTest',
-    'zh': r'D:\dev\wows\Korabli-LESTA-L10N-PublicTest',
-    'cht': r'D:\dev\wows\Korabli-L10n-CHT-PublicTest'
+lang_info = {
+    'en': r'C:\Users\HoloI\Documents\dev\lesta\l10n\en-pt',
+    'zh': r'C:\Users\HoloI\Documents\dev\lesta\l10n\zh-pt',
+    'cht': r'C:\Users\HoloI\Documents\dev\lesta\l10n\cht-pt',
+    'ja': r'C:\Users\HoloI\Documents\dev\lesta\l10n\ja-pt'
 }
 
 installer_name_pattern = {
     'zh': '澪刻汉化离线包-PT-$game_version$-$l10n_version$.exe',
     'cht': '澪刻繁體中文化離綫包-PT-$game_version$-$l10n_version$.exe',
-    'en': 'LK-English-L10n-PT-$game_version$-$l10n_version$.exe'
+    'en': 'LK-English-L10n-PT-$game_version$-$l10n_version$.exe',
+    'ja': 'LK-Japanese-L10n-PT-$game_version$-$l10n_version$.exe'
 }
 
 def should_skip(path: Path, patterns: List[str]) -> bool:
@@ -39,11 +39,14 @@ def should_skip(path: Path, patterns: List[str]) -> bool:
 def _collect_lang(lang_name: str, l10n_path: Path, ee_path: Path, locale_config_path: Path):
     print(f'正在收集{lang_name}语言的文件…')
     base_target_path = Path('Localizations').joinpath(lang_name)
-    shutil.rmtree(base_target_path)
+    if base_target_path.is_dir():
+        shutil.rmtree(base_target_path)
     os.makedirs(base_target_path, exist_ok=True)
     os.makedirs(base_target_path.joinpath('texts').joinpath('ru').joinpath('LC_MESSAGES'), exist_ok=True)
     for file in os.listdir(l10n_path):
-        if 'version.info' in file or 'global.mo' in file:
+        if 'version.info' in file:
+            shutil.copy(l10n_path.joinpath(file), base_target_path.joinpath('texts').joinpath('ru').joinpath('LC_MESSAGES').joinpath(file))
+        elif '.mo' in file:
             shutil.copy(l10n_path.joinpath(file), base_target_path.joinpath('texts').joinpath('ru').joinpath('LC_MESSAGES').joinpath(file))
     shutil.copytree(ee_path, base_target_path, dirs_exist_ok=True)
     shutil.copy(locale_config_path, base_target_path.joinpath('locale_config.xml'))
@@ -118,18 +121,18 @@ def collect_shared():
     shared_dir = Path('Shared').joinpath('res_mods')
     shutil.rmtree(shared_dir)
     os.makedirs(shared_dir, exist_ok=True)
-    shutil.copytree(srchelios_path, shared_dir, dirs_exist_ok=True)
+    # shutil.copytree(srchelios_path, shared_dir, dirs_exist_ok=True)
 
-
-if __name__ == '__main__':
+def main():
     collect_shared()
     os.makedirs('Releases', exist_ok=True)
+    os.makedirs('Output', exist_ok=True)
     for file in os.listdir('Output'):
         os.remove(f'Output/{file}')
     for lang in langs:
         try:
             # Full
-            collect_lang(lang_name=lang, base_path=Path(lang_base_paths[lang]))
+            collect_lang(lang_name=lang, base_path=Path(lang_info[lang]))
             print(f'已生成压缩包：{zip_lang(lang)}')
             pack = pack_lang(lang)
             if pack:
@@ -146,4 +149,11 @@ if __name__ == '__main__':
         if file not in shall_not_delete:
             os.remove(file)
             print(f'已删除压缩包：{file}')
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except Exception as ex:
+        print(ex)
     input('按回车键退出。')
