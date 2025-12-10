@@ -46,7 +46,7 @@ def _collect_lang(lang_name: str, l10n_path: Path, ee_path: Path, locale_config_
     for file in os.listdir(l10n_path):
         if 'version.info' in file:
             shutil.copy(l10n_path.joinpath(file), base_target_path.joinpath('texts').joinpath('ru').joinpath('LC_MESSAGES').joinpath(file))
-        elif '.mo' in file:
+        elif 'global.mo' in file or 'layer.mo' in file:
             shutil.copy(l10n_path.joinpath(file), base_target_path.joinpath('texts').joinpath('ru').joinpath('LC_MESSAGES').joinpath(file))
     shutil.copytree(ee_path, base_target_path, dirs_exist_ok=True)
     shutil.copy(locale_config_path, base_target_path.joinpath('locale_config.xml'))
