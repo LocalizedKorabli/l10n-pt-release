@@ -12,13 +12,13 @@ jobs:
       matrix:
         include:
           - prefix: "EN"
-            artifact_name: "l10n-en"
+            artifact_name: "l10n-en-pt"
           - prefix: "CHS"
-            artifact_name: "l10n-chs"
+            artifact_name: "l10n-chs-pt"
           - prefix: "CHT"
-            artifact_name: "l10n-cht"
+            artifact_name: "l10n-cht-pt"
           - prefix: "JA"
-            artifact_name: "l10n-ja"
+            artifact_name: "l10n-ja-pt"
 
     steps:
       - name: Checkout repository
