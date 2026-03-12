@@ -1,0 +1,33 @@
+name: Upload L10n Executables
+
+on: 
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy-l10n:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - prefix: "EN"
+            artifact_name: "l10n-en"
+          - prefix: "CHS"
+            artifact_name: "l10n-chs"
+          - prefix: "CHT"
+            artifact_name: "l10n-cht"
+          - prefix: "JA"
+            artifact_name: "l10n-ja"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: "Output/*${{ matrix.prefix }}*.exe"
+          if-no-files-found: error
+          retention-days: 45

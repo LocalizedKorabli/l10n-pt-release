@@ -24,10 +24,10 @@ lang_info = {
 }
 
 installer_name_pattern = {
-    'zh': '澪刻汉化离线包-PT-$game_version$-$l10n_version$.exe',
-    'cht': '澪刻繁體中文化離綫包-PT-$game_version$-$l10n_version$.exe',
-    'en': 'LK-English-L10n-PT-$game_version$-$l10n_version$.exe',
-    'ja': 'LK-Japanese-L10n-PT-$game_version$-$l10n_version$.exe'
+    'zh': '[CHS]澪刻汉化离线包-PT-$game_version$-$l10n_version$.exe',
+    'cht': '[CHT]澪刻繁體中文化離綫包-PT-$game_version$-$l10n_version$.exe',
+    'en': '[EN]LK-English-L10n-PT-$game_version$-$l10n_version$.exe',
+    'ja': '[JA]LK-Japanese-L10n-PT-$game_version$-$l10n_version$.exe'
 }
 
 def should_skip(path: Path, patterns: List[str]) -> bool:
