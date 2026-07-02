@@ -1,0 +1,14 @@
+Vielen Dank, dass Sie den deutschen Lokalisierungsmod von LocalizedKorabli verwenden.
+Dies ist ein Offline-Installationsprogramm für den oben genannten Lokalisierungsmod.
+
+Enthaltene Inhalte:
+• Ein deutsches Lokalisierungspaket für den öffentlichen Testclient von Mir Korabley;
+• Ein deutsches Ladebildschirm-Logo;
+• Auf dem Unbound-Framework basierende UI-Optimierungsmods.
+
+Bei Fragen zum Programm wenden Sie sich bitte an OpenKorabli, indem Sie ein Issue auf https://github.com/OpenKorabli/OpenL10nInstaller/issues erstellen.
+Bei Fragen zum Lokalisierungsmod erreichen Sie uns, indem Sie ein Issue auf https://github.com/LocalizedKorabli/Korabli-I18n-DE-PT/issues erstellen.
+
+Die Installation beginnt, sobald Sie auf „Weiter" klicken.
+
+Viel Spaß beim Spielen!

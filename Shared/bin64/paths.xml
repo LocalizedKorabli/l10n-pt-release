@@ -1,5 +1,6 @@
 <root>
     <Paths>
+        <Path type="mods">..\lk_mods</Path>
         <Path>..\res_mods</Path>
         <Path type="mods">..\mods</Path>
         <Path key="15b8d" packages="..\..\..\res_packages" type="PFS">..\idx</Path>

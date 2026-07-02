@@ -8,7 +8,7 @@ from typing import List
 
 shall_not_delete: List[str] = []
 
-langs = ['en', 'zh', 'cht', 'ja']
+langs = ['en', 'es', 'de', 'zh', 'cht', 'ja']
 
 iscc_path = r'C:\Program Files (x86)\Inno Setup 6\ISCC.exe'
 
@@ -18,15 +18,19 @@ forum_exclude_patterns = ['game_logo.svg', 'game_logo_alt.svg', 'game_logo_stati
 
 lang_info = {
     'en': r'C:\Users\HoloI\Documents\dev\lesta\l10n\en-pt',
+    'es': r'C:\Users\HoloI\Documents\dev\lesta\l10n\es-pt',
+    'de': r'C:\Users\HoloI\Documents\dev\lesta\l10n\de-pt',
     'zh': r'C:\Users\HoloI\Documents\dev\lesta\l10n\zh-pt',
     'cht': r'C:\Users\HoloI\Documents\dev\lesta\l10n\cht-pt',
     'ja': r'C:\Users\HoloI\Documents\dev\lesta\l10n\ja-pt'
 }
 
 installer_name_pattern = {
-    'zh': '[CHS]澪刻汉化离线包-PT-$game_version$-$l10n_version$.exe',
-    'cht': '[CHT]澪刻繁體中文化離綫包-PT-$game_version$-$l10n_version$.exe',
+    'zh': '[CHS]澪刻汉化离线包-PT服$game_version$-$l10n_version$.exe',
+    'cht': '[CHT]澪刻繁體中文化離綫包-PT服$game_version$-$l10n_version$.exe',
     'en': '[EN]LK-English-L10n-PT-$game_version$-$l10n_version$.exe',
+    'es': '[ES]LK-Español-Localización-PT-$game_version$-$l10n_version$.exe',
+    'de': '[DE]LK-Deutsch-L10n-PT-$game_version$-$l10n_version$.exe',
     'ja': '[JA]LK-Japanese-L10n-PT-$game_version$-$l10n_version$.exe'
 }
 

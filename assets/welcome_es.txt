@@ -1,0 +1,14 @@
+Gracias por utilizar el mod de localización al español de LocalizedKorabli.
+Este es un instalador offline para el mod de localización mencionado anteriormente.
+
+Contenido incluido:
+- Un pack de localización en español para Mir Korabley;
+- Un logo para cargar el juego;
+- Mods de optimización de la interfaz de usuario basados en el framework Unbound.
+
+Si tienes alguna sugerencia sobre el programa, ponte en contacto con OpenKorabli creando una incidencia en https://github.com/OpenKorabli/OpenL10nInstaller/issues.
+Si tienes alguna sugerencia sobre el programa, ponte en contacto con nosotros creando una incidencia en https://github.com/LocalizedKorabli/Korabli-I18n-ES/issues.
+
+La instalación comenzará cuando hagas clic en «Siguiente».
+
+Disfruta del juego~
