@@ -7,7 +7,7 @@
 
 [Setup]
 AppName={cm:MyAppName}
-AppVersion=26.10.8867508.0
+AppVersion=26.11.8868916.0
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppPublisherURL}
 AppSupportURL={#MyAppSupportURL}
